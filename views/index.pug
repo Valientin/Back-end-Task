@@ -1,0 +1,9 @@
+extends layout/main
+
+block content
+	if user
+		h2 #{user.name}
+	else
+		div.home-text
+			h1 #{text}
+			h2 This is a Back-end Task

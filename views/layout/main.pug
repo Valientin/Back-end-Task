@@ -1,0 +1,41 @@
+doctype html
+html(lang="ru-RU")
+	head
+		meta(charset="utf-8")
+		if title
+			title #{title}
+		else
+			title Back-end Task
+		meta(name="viewport" content="width=device-width,initial-scale=1")
+		link(rel="stylesheet" type="text/css" href="/css/style.css")
+	body
+		header
+			.container
+				div.logo
+					a(href='/') BACK-END TASK
+				ul.header-nav
+					if user
+						li(class="header-nav__item")
+							h4.user-name Hello, #{user.username}!
+						li(class="header-nav__item")
+							a(class="header-nav__link" href='/logout') Logout
+					else
+						if register
+							li(class="header-nav__item")
+								a(class="header-nav__link" href='/login') Login
+						if login
+							li(class="header-nav__item")
+								a(class="header-nav__link" href='/register') Register
+		.content-wrapper
+			.container
+				!= messages('message', locals)
+				if errors
+					.messages
+						each error, i in errors
+							div(class="alert alert-danger") #{error.msg}
+				block content
+		footer
+			.container
+				p Copyright &copy; 2018 | Back-end Task
+		block scripts
+		script(src='/js/main.js')
